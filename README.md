@@ -43,9 +43,35 @@ The logical schema is normalized up to the **Third Normal Form (3NF)** to elimin
 
 ---
 
-## 📂 Repository Contents
-* `Database_Schema_And_Logic.sql`: Comprehensive SQL script containing tables initialization, foreign key constraints, indexes, triggers, custom functions, and stored procedures.
-* `Project_Documentation.pdf`: Full structural technical documentation detailing business rules, logical mappings, and system specifications.
+## 📂 Repository Structure & Contents
+
+The repository is structured into modular directories to maintain a clean separation between database schema structure, programmable business logic, and security management:
+
+```text
+📁 ExamSystemDB/
+│
+├── 📁 Structure/                        # Core database definition & schema setup
+│   ├── 📄 CreateDB&FG.sql               # Database creation and Filegroup configurations
+│   ├── 📄 Create tables.sql             # Relational tables schema and definitions
+│   ├── 📄 Exam&Attempt.sql              # Core schema components for exams & student attempts
+│   ├── 📄 INSERTStaticCoreData.sql      # Seed scripts for static system lookup data
+│   └── 📄 INSERTUsers&Sub-Entities.sql  # Seed scripts for system roles, mock users & sub-entities
+│
+├── 📁 Logic/                            # Programmable database business logic objects
+│   ├── 📄 PROCEDURE_CreateNewExam.sql   # Randomized and constrained exam generation logic
+│   ├── 📄 TYPE & SP_SubmitAnswers.sql   # User-Defined Table Type & atomic transaction submission engine
+│   ├── 📄 SP_GrantExamAccess.sql        # Batch allocation of exam permissions for student cohorts
+│   ├── 📄 FN_CalculateAttemptScore.sql  # Central automated scoring and evaluation engine
+│   ├── 📄 FN_CheckPassingStatus.sql     # Helper function to cross-reference passing criteria
+│   ├── 📄 TRIGGER_PreventUserDeletion.sql# INSTEAD OF DELETE data protection guardrail
+│   ├── 📄 NONCLUSTERED INDEX.sql       # Query performance tuning and index optimization layers
+│   ├── 📄 VW_StudentExamResults.sql     # View reporting aggregated student scores and statuses
+│   └── 📄 VW_InstructorCourseExams.sql  # View providing instructor analytical auditing metrics
+│
+├── 📁 Login/                            # Security, access controls, and authentication
+│   └── 📄 Login&Access.sql              # Security parameters, user logins, and operational access rights
+│
+└── 📄 PROJECT DOCUMENTATION EXAM MANAGEMENT SYSTEM.pdf # Full technical system documentation & architecture blueprint
 
 ---
 *Developed as part of the Instant-Backend Development Program.* **Author:** Hajer Eid  
